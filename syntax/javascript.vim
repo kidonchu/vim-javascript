@@ -117,11 +117,7 @@ syntax keyword jsAsyncKeyword           async await
 syntax match   jsSwitchColon   contained /::\@!/       skipwhite skipempty nextgroup=jsSwitchBlock
 
 " Keywords
-syntax keyword jsGlobalObjects      Array Boolean Date Function Iterator Number Object Symbol Map WeakMap Set RegExp String Proxy Promise Buffer ParallelArray ArrayBuffer DataView Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray JSON Math console document window Intl Collator DateTimeFormat NumberFormat fetch
-syntax keyword jsGlobalNodeObjects  module exports global process __dirname __filename
-syntax match   jsGlobalNodeObjects  /\<require\>/ containedin=jsFuncCall
-syntax keyword jsExceptions         Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError
-syntax keyword jsBuiltins           decodeURI decodeURIComponent encodeURI encodeURIComponent eval isFinite isNaN parseFloat parseInt uneval
+syntax keyword jsGlobalObjects      Array Boolean Date Function Iterator Number Object Symbol Map WeakMap Set RegExp String Proxy Promise Buffer ParallelArray ArrayBuffer DataView Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray JSON Math document window Intl Collator DateTimeFormat NumberFormat fetch
 " DISCUSS: How imporant is this, really? Perhaps it should be linked to an error because I assume the keywords are reserved?
 syntax keyword jsFutureKeys         abstract enum int short boolean interface byte long char final native synchronized float package throws goto private transient implements protected volatile double public
 
@@ -224,6 +220,9 @@ syntax region  jsCommentRepeat      contained start=/\/\*/ end=/\*\// contains=j
 " Decorators
 syntax match   jsDecorator                    /^\s*@/ nextgroup=jsDecoratorFunction
 syntax match   jsDecoratorFunction  contained /[a-zA-Z_][a-zA-Z0-9_.]*/ nextgroup=jsParenDecorator
+
+" Debugging
+syntax match   jsConsoleLog  /\vconsole\.log.*/ contains=jsGlobalObjects
 
 if exists("javascript_plugin_jsdoc")
   runtime extras/jsdoc.vim
